@@ -1,0 +1,44 @@
+
+import { FlatList } from 'react-native';
+import { router, useRouter } from 'expo-router';
+
+import { DATA } from "../data/data";
+import ButtonGrid from '../components/ButtonGrid';
+import FavoritesCard from '../components/FavoritesCard'
+
+// const router = useRouter();
+
+function HomeScreen(){
+    function renderButtonItem(itemData){ 
+        function routingHelper(){
+            if(itemData.item.buttonName === 'FRIENDS'){
+                router.push('../screens/CreateListScreen')
+            }
+        }
+        
+        return(
+            <ButtonGrid 
+                buttonName={itemData.item.buttonName}
+                onPress={routingHelper}                
+            />
+        )
+    }
+    
+    return(
+        <>
+            <FlatList
+                data={DATA}
+                keyExtractor={(item) => item.id}
+                renderItem={renderButtonItem} 
+            />
+            <FavoritesCard />
+        </>
+    )
+}
+
+export default HomeScreen;
+
+
+<Link href='/screens/ListScreen'>LISTS</Link>
+<Link href='/screens/ListScreen'>CALENDAR</Link>
+<Link href='/screens/ListScreen'>POLLS</Link>
