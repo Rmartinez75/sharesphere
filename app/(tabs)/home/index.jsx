@@ -1,14 +1,15 @@
 
 import React from 'react'
 import { StyleSheet, Text, Pressable, View, FlatList } from 'react-native'
-import { router } from 'expo-router'
+import { Stack, router } from 'expo-router'
 
-import FavoritesCard from './components/FavoritesCard'
-import { DATA } from './data/data'
+import FavoritesCard from '../../components/FavoritesCard'
+import { DATA } from '../../data/data'
 
 const Home = () => {
   return ( 
     <>   
+      <Stack.Screen options={{headerShown: true, title:'Home'}} />
       <FlatList 
         data={DATA}
         keyExtractor={(item) => item.id}
@@ -23,16 +24,16 @@ const Home = () => {
                   ]}
                 onPress={() => {
                   if(itemData.item.buttonName === 'FRIENDS'){
-                    router.push('/screens/FriendsScreen')
+                    router.push('/home/screens/FriendsScreen')
                   } else if(itemData.item.buttonName === 'LISTS'){
-                      router.push('/screens/ListScreen')
+                      router.push('/home/screens/ListScreen')
                   } else if(itemData.item.buttonName === 'CALENDARS'){
-                      router.push('/screens/CalendarScreen')
+                      router.push('/home/screens/CalendarScreen')
                   } else if(itemData.item.buttonName === 'POLLS'){
-                      router.push('/screens/PollsScreen')
+                      router.push('/home/screens/PollsScreen')
                   }
                 }}
-              >
+              > 
                   <View style={styles.innerContainer}>
                       <Text>{itemData.item.buttonName}</Text>
                   </View>
@@ -41,7 +42,7 @@ const Home = () => {
           )
         }}
       />
-      <FavoritesCard />
+      {/* <FavoritesCard /> */}
     </> 
   )
 }
@@ -49,9 +50,9 @@ const Home = () => {
 styles = StyleSheet.create({
   buttonContainer:{
     flex: 1,
-    marginVertical: 25,
+    marginVertical: 32,
     marginHorizontal: 20,
-    height: 50,
+    height: 65,
     borderRadius: 8,
     elevation: 4,
     backgroundColor: 'white',
