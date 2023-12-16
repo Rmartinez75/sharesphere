@@ -3,7 +3,6 @@ import React from 'react'
 import { StyleSheet, Text, Pressable, View, FlatList } from 'react-native'
 import { Stack, router } from 'expo-router'
 
-import FavoritesCard from '../../components/FavoritesCard'
 import { DATA } from '../../data/data'
 
 const Home = () => {
@@ -42,7 +41,6 @@ const Home = () => {
           )
         }}
       />
-      {/* <FavoritesCard /> */}
     </> 
   )
 }

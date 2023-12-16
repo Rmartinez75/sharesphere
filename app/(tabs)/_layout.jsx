@@ -15,7 +15,7 @@ const _layout = () => {
         />
         <Tabs.Screen 
           name='new' 
-          options={{title:'NEW'}}
+          options={{title:'ADD NEW'}}
         />
     </Tabs>
   )
