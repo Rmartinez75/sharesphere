@@ -1,19 +1,30 @@
 
 import React, { useState } from 'react'
-import { StyleSheet, Text, Pressable, View, FlatList, Modal } from 'react-native'
-import { Stack, router } from 'expo-router'
+import { 
+  StyleSheet, 
+  Text, 
+  Pressable, 
+  View, FlatList, 
+  Modal, 
+  TouchableOpacity 
+} from 'react-native'
+import { Stack } from 'expo-router'
 import AddNewList from './AddNewList'
 import AddNewFriend from './AddNewFriend'
 import AddNewCalendar from './AddNewCalendar'
 import AddNewPoll from './AddNewPoll'
-
 import { ADD_NEW_DATA } from '../../data/data'
+import { AntDesign } from '@expo/vector-icons';
 
 const AddNew = () => {
   const [openFriendModal, setOpenFriendModal] = useState(false)
   const [openListModal, setOpenListModal] = useState(false)
   const [openCalendarModal, setOpenCalendarModal] = useState(false)
   const [openPollModal, setOpenPollModal] = useState(false)
+
+  function closeModal(){
+    setOpenFriendModal(false)
+  }
 
   return (
     <>   
@@ -42,39 +53,45 @@ const AddNew = () => {
                   }
                 }}
               >                
-                  <View style={styles.innerContainer}>
-                      <Text>{itemData.item.buttonName}</Text>
-                  </View>
-                  <Modal 
-                    visible={openFriendModal}
-                    animationType='slide'
-                    presentationStyle='pageSheet'
-                  >
-                    <AddNewFriend />
-                  </Modal>
-                  <Modal 
-                    visible={openListModal}
-                    animationType='slide'
-                    presentationStyle='pageSheet'
-                  >
-                    <AddNewList />
-                  </Modal>
-                  <Modal 
-                    visible={openCalendarModal}
-                    animationType='slide'
-                    presentationStyle='pageSheet'
-                  >
-                    <AddNewCalendar />
-                  </Modal>
-                  <Modal 
-                    visible={openPollModal}
-                    animationType='slide'
-                    presentationStyle='pageSheet'
-                  >
-                    <AddNewPoll />
-                  </Modal>
+                <View style={styles.innerContainer}>
+                    <Text>{itemData.item.buttonName}</Text>
+                </View>
               </Pressable>
-              
+              <Modal 
+                visible={openFriendModal}
+                animationType='slide'
+                presentationStyle='pageSheet'
+              >
+                <TouchableOpacity onPress={closeModal}>
+                <AntDesign 
+                  name="closecircle" 
+                  size={24} 
+                  color="black"                       
+                />
+                </TouchableOpacity>
+                <AddNewFriend />
+              </Modal>
+              <Modal 
+                visible={openListModal}
+                animationType='slide'
+                presentationStyle='pageSheet'
+              >
+                <AddNewList />
+              </Modal>
+              <Modal 
+                visible={openCalendarModal}
+                animationType='slide'
+                presentationStyle='pageSheet'
+              >
+                <AddNewCalendar />
+              </Modal>
+              <Modal 
+                visible={openPollModal}
+                animationType='slide'
+                presentationStyle='pageSheet'
+              >
+                <AddNewPoll />
+              </Modal>
             </View>
           )
         }}
